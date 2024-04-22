@@ -29,9 +29,17 @@ const rows = [
 const columns = [
   { field: "id", headerName: "ID" },
   { field: "name", headerName: "Name" },
-  { field: "start", headerName: "Start" },
-  { field: "end", headerName: "end" },
+  { field: "formula", headerName: "Formula" },
+  { field: "manufacturer", headerName: "Manufacturer" },
+  { field: "expiry_date", headerName: "Expiry" },
 ];
+
+// const columns = [
+//   { field: "id", headerName: "ID" },
+//   { field: "name", headerName: "Name" },
+//   { field: "start", headerName: "Start" },
+//   { field: "end", headerName: "end" },
+// ];
 
 const DataGridComponent = (props) => {
   return (
