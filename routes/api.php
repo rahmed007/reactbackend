@@ -9,4 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/medicines', [MedicineController::class, 'index']);
+<<<<<<< HEAD
 Route::post('/medicines', [MedicineController::class, 'store']);
+=======
+Route::post('/medicines/create', [MedicineController::class, 'store']);
+>>>>>>> 45a1cda3962b4a916d3bbb370e9aacfbc6ee3b6b
