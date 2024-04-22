@@ -18,13 +18,14 @@ let TableComponent = () => {
         console.log("this will delete last data");
         try {
             axios
-                .post("http://localhost:8000/api/medicine/create", {
+                .post("http://localhost:8000/api/medicines", {
                     name: `${updateMonarchName}`,
                     formula: "paracetamol",
                     manufacturer: "getz",
                     expiry_date: "2025-07-08",
                 })
                 .then((res) => {
+                    console.log(res);
                     alert(res.data);
                 })
                 .catch((error) => {
