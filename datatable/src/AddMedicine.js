@@ -18,8 +18,9 @@ const postcreate = (drugData) => {
                 alert(res.data.message);
             })
             .catch((error) => {
-                console.log(error.response.data);
-                alert(error.response.data.message);
+                console.log(error);
+                // console.log(error.response.data);
+                // alert(error.response.data.message);
             });
     } catch (error) {
         alert(error.response.data);
@@ -78,12 +79,14 @@ const AddMedicine = (props) => {
                     <div className="popupButton">
                         <button
                             onClick={() => {
-                              alert(`${expiry.format('YYYY-MM-DD')}`)
+                                alert(`${expiry.format("YYYY-MM-DD")}`);
                                 postcreate({
                                     name: `${dname}`,
                                     formula: `${fname}`,
                                     manufacturer: `${mname}`,
-                                    expiry_date: `${expiry.format('YYYY-MM-DD')}`,
+                                    expiry_date: `${expiry.format(
+                                        "YYYY-MM-DD"
+                                    )}`,
                                 });
                             }}
                         >
