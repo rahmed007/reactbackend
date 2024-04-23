@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import DataGridComponent from "./DataGridComponent";
 import "./TableComponent.css";
 import { cardActionAreaClasses } from "@mui/material";
+import AddMedicine from "./AddMedicine";
 
 let TableComponent = () => {
     let [kingname, updatekingname] = useState([]);
@@ -26,7 +27,7 @@ let TableComponent = () => {
                 })
                 .then((res) => {
                     console.log(res);
-                    alert(res.data);
+                    alert(res.data.message);
                 })
                 .catch((error) => {
                     console.log(error.response.data);
@@ -86,6 +87,7 @@ let TableComponent = () => {
                 <div className="buttonDiv">
                     <button onClick={getrequest}>Request</button>
                     <button onClick={postcreate}>Create</button>
+                    <AddMedicine></AddMedicine>
                 </div>
                 <div className="addData">
                     <input
