@@ -75,7 +75,7 @@ const DataGridComponent = (props) => {
             headerName: "Edit",
             Selection: false,
             renderCell: (params) => {
-                return <EditMedicine rowData={params.row}></EditMedicine>;
+                return <EditMedicine rowData={params.row} updateData={refreshTable}></EditMedicine>;
             },
         },
         {

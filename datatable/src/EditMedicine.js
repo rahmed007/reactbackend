@@ -3,19 +3,46 @@ import Popup from "reactjs-popup";
 import dayjs from "dayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
 import "./Popup.css";
-import { gridRowsDataRowIdToIdLookupSelector } from "@mui/x-data-grid";
+
+// import DeleteIcon from "@mui/icons-material/Delete";
 
 const EditMedicine = (props) => {
     let [dname, udname] = useState(props.rowData.name);
     let [fname, ufname] = useState(props.rowData.formula);
     let [mname, umname] = useState(props.rowData.manufacturer);
     let [expiry, uexpiry] = useState(dayjs(Date.now()));
+
+    const putRequest = (drugData) => {
+        // const postHeader = { "Access-Control-Allow-Origin": "*" };
+        // console.log("this will delete last data");
+        console.log(props.rowData.id);
+        try {
+            axios.put(
+                // `http://localhost:8000/api/medicines/${props.rowData.id}`,drugData
+                `http://localhost:8000/api/medicines/${props.rowData.id}?name=${drugData.name}&manufacturer=${drugData.manufacturer}&formula=${drugData.formula}&expiry_date=${drugData.expiry_date}`
+            );
+            // .then((res) => {
+            //     console.log("this is correct");
+            //     console.log(res);
+            //     alert(res.data.message);
+            // })
+            // .catch((error) => {
+            //     console.log("this is error");
+            //     console.log(error);
+            //     props.updateData();
+            //     // console.log(error.response.data);
+            //     // alert(error.response.data.message);
+            // });
+        } catch (error) {
+            console.log(error);
+        }
+        console.log("put complete");
+    };
 
     return (
         <Popup
@@ -65,7 +92,22 @@ const EditMedicine = (props) => {
                         ></DatePicker>
                     </LocalizationProvider>
                     <div className="popupButton">
-                        <button>Add</button>
+                        <button
+                            onClick={() => {
+                                console.log(expiry.format("YYYY-MM-DD"));
+                                putRequest({
+                                    name: `${dname}`,
+                                    formula: `${fname}`,
+                                    manufacturer: `${mname}`,
+                                    expiry_date: `${expiry.format(
+                                        "YYYY-MM-DD"
+                                    )}`,
+                                });
+                                props.updateData();
+                            }}
+                        >
+                            Update
+                        </button>
                         <button
                             onClick={() => {
                                 close();
