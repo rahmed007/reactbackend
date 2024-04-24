@@ -4,10 +4,11 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "./TableComponent.css";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
+import Popup from "reactjs-popup";
+import EditMedicine from "./EditMedicine";
 // import Clock from "react-live-clock";
-
 
 // const rows = [
 //     { name: "Elizabeth", start: 1565, end: 1603, id: 0 },
@@ -30,78 +31,95 @@ import { IconButton } from "@mui/material";
 //     { name: "George IV", start: 1820, end: 1820, id: 11 },
 // ];
 
-const sendEdit = (params) => {
-    console.log("Edit function");
-    console.log(params);
-};
-
-const sendDelete = (params) => {
-    console.log(params);
-    axios
-        .delete(`http://localhost:8000/api/medicines/${params.id}`)//, { data: params })
-        .then((response) => {
-            console.log(response);
-            // alert(response.data.message);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-};
-
-const columns = [
-    { field: "id", headerName: "ID" },
-    { field: "name", headerName: "Name" },
-    { field: "formula", headerName: "Formula" },
-    { field: "manufacturer", headerName: "Manufacturer" },
-    { field: "expiry_date", headerName: "Expiry" },
-    {
-        field: "edit",
-        headerName: "Edit",
-        Selection: false,
-        renderCell: (params) => {
-            return (
-                <IconButton
-                    className="tableButton"
-                    onClick={() => {
-                        alert("I clicked edit");
-                        console.log(params.row);
-                        sendEdit(params.row);
-                    }}
-                >
-                    <EditIcon></EditIcon>
-                </IconButton>
-            );
-        },
-    },
-    {
-        field: "delete",
-        headerName: "Delete",
-        Selection: false,
-        renderCell: (params) => {
-            return (
-                <IconButton
-                    className="tableButton"
-                    onClick={() => {
-                        // alert("I am clicked to delete the selected row");
-                        console.log(params.row);
-                        sendDelete(params.row);
-                    }}
-                >
-                    <DeleteIcon></DeleteIcon>
-                </IconButton>
-            );
-        },
-    },
-];
-
-// const columns = [
-//   { field: "id", headerName: "ID" },
-//   { field: "name", headerName: "Name" },
-//   { field: "start", headerName: "Start" },
-//   { field: "end", headerName: "end" },
-// ];
-
 const DataGridComponent = (props) => {
+    let [singleData, updateSingleData] = useState({});
+    const getSingle = (params) => {
+        axios
+            .get(`http://localhost:8000/api/medicines/${params.id}`)
+            .then((res) => {
+                console.log(res);
+                updateSingleData(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const sendEdit = (params) => {
+        console.log("Edit function");
+        getSingle(params);
+    };
+
+    const sendDelete = (params) => {
+        console.log(params);
+        axios
+            .delete(`http://localhost:8000/api/medicines/${params.id}`) //, { data: params })
+            .then((response) => {
+                console.log(response);
+                refreshTable();
+                // alert(response.data.message);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const columns = [
+        { field: "id", headerName: "ID" },
+        { field: "name", headerName: "Name" },
+        { field: "formula", headerName: "Formula" },
+        { field: "manufacturer", headerName: "Manufacturer" },
+        { field: "expiry_date", headerName: "Expiry" },
+        {
+            field: "edit",
+            headerName: "Edit",
+            Selection: false,
+            renderCell: (params) => {
+                return <EditMedicine rowData={params.row}></EditMedicine>;
+            },
+        },
+        {
+            field: "delete",
+            headerName: "Delete",
+            Selection: false,
+            renderCell: (params) => {
+                return (
+                    <IconButton
+                        className="tableButton"
+                        onClick={() => {
+                            // alert("I am clicked to delete the selected row");
+                            console.log(params.row);
+                            sendDelete(params.row);
+                        }}
+                    >
+                        <DeleteIcon></DeleteIcon>
+                    </IconButton>
+                );
+            },
+        },
+    ];
+
+    const refreshTable = () => {
+        console.log("refreshing");
+        axios
+            .get("http://localhost:8000/api/medicines")
+            .then((res) => {
+                console.log(res);
+                props.updatetable(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    {
+    }
+    // const columns = [
+    //   { field: "id", headerName: "ID" },
+    //   { field: "name", headerName: "Name" },
+    //   { field: "start", headerName: "Start" },
+    //   { field: "end", headerName: "end" },
+    // ];
+
     return (
         <>
             {/* <h1>{dataTable.length}</h1> */}
