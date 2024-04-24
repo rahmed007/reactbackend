@@ -56,7 +56,7 @@ class MedicineController extends Controller
             $medicine->save();
 
             return response()->json([
-                "message"=> "Medicine Updates"
+                "message"=> "Medicine Updated"
             ], 404);
         }
         else
