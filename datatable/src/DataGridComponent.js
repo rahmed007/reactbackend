@@ -3,7 +3,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import dayjs from "dayjs";
 import "./TableComponent.css";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from "@mui/material";
 // import Clock from "react-live-clock";
+
 
 // const rows = [
 //     { name: "Elizabeth", start: 1565, end: 1603, id: 0 },
@@ -56,7 +60,7 @@ const columns = [
         Selection: false,
         renderCell: (params) => {
             return (
-                <button
+                <IconButton
                     className="tableButton"
                     onClick={() => {
                         alert("I clicked edit");
@@ -64,8 +68,8 @@ const columns = [
                         sendEdit(params.row);
                     }}
                 >
-                    Edit
-                </button>
+                    <EditIcon></EditIcon>
+                </IconButton>
             );
         },
     },
@@ -75,7 +79,7 @@ const columns = [
         Selection: false,
         renderCell: (params) => {
             return (
-                <button
+                <IconButton
                     className="tableButton"
                     onClick={() => {
                         // alert("I am clicked to delete the selected row");
@@ -83,8 +87,8 @@ const columns = [
                         sendDelete(params.row);
                     }}
                 >
-                    Delete
-                </button>
+                    <DeleteIcon></DeleteIcon>
+                </IconButton>
             );
         },
     },
