@@ -69,6 +69,9 @@ class MedicineController extends Controller
 
     public function destroy($id)
     {
-    
+        $medicine = Medicine::findOrFail($id);
+        $medicine->delete();
+
+        return response()->json(['message' => 'Medicine deleted successfully']);
     }
 }
