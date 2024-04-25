@@ -21,23 +21,25 @@ const EditMedicine = (props) => {
         // const postHeader = { "Access-Control-Allow-Origin": "*" };
         // console.log("this will delete last data");
         console.log(props.rowData.id);
+        console.log(drugData);
         try {
-            axios.put(
-                // `http://localhost:8000/api/medicines/${props.rowData.id}`,drugData
-                `http://localhost:8000/api/medicines/${props.rowData.id}?name=${drugData.name}&manufacturer=${drugData.manufacturer}&formula=${drugData.formula}&expiry_date=${drugData.expiry_date}`
-            );
-            // .then((res) => {
-            //     console.log("this is correct");
-            //     console.log(res);
-            //     alert(res.data.message);
-            // })
-            // .catch((error) => {
-            //     console.log("this is error");
-            //     console.log(error);
-            //     props.updateData();
-            //     // console.log(error.response.data);
-            //     // alert(error.response.data.message);
-            // });
+            axios
+                .put(
+                    `http://localhost:8000/api/medicines/${props.rowData.id}`,
+                    drugData
+                )
+                .then((res) => {
+                    // console.log("this is correct");
+                    console.log(res);
+                    alert(res.data.message);
+                })
+                .catch((error) => {
+                    // console.log("this is error");
+                    // console.log(error);
+                    props.updateData();
+                    // console.log(error.response.data);
+                    alert(error.response.data.message);
+                });
         } catch (error) {
             console.log(error);
         }
@@ -102,8 +104,7 @@ const EditMedicine = (props) => {
                                     expiry_date: `${expiry.format(
                                         "YYYY-MM-DD"
                                     )}`,
-                                });
-                                props.updateData();
+                                });                                
                             }}
                         >
                             Update
