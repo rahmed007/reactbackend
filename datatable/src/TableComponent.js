@@ -1,12 +1,12 @@
 import { React, useState } from "react";
 import Clock from "react-live-clock";
-import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import dayjs from "dayjs";
 import DataGridComponent from "./DataGridComponent";
 import "./TableComponent.css";
-import { cardActionAreaClasses } from "@mui/material";
 import AddMedicine from "./AddMedicine";
+// import { DataGrid } from "@mui/x-data-grid";
+// import { cardActionAreaClasses } from "@mui/material";
 
 let TableComponent = () => {
     let [kingname, updatekingname] = useState([]);
@@ -121,6 +121,7 @@ let TableComponent = () => {
                 <DataGridComponent
                     key={0}
                     datatable={kingname}
+                    updatetable={updatekingname}
                 ></DataGridComponent>
             </div>
         </>
