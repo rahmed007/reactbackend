@@ -30,9 +30,9 @@ class AuthApiController extends Controller
             }
 
             $user = User::create([
-                'name' => 'Zeeshan',
-                'email' => 'zeeshan@gmail.com',
-                'password' => '123456'
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password
             ]);
 
             return response()->json([
