@@ -58,11 +58,12 @@ const CustomerDialog = (props) => {
   const postcreate = (param) => {
     /// post to add new customer
     const postHeader = { 'Access-Control-Allow-Origin': '*' }
-    console.log('this will delete last data')
+    // console.log('this will delete last data')
+    console.log("Adding customers with data");
     try {
       axios
         // .post('http://localhost:8000/api/medicines', drugData)
-        .post('http://localhost:8000/api/customer', param)
+        .post('http://localhost:8000/api/customers', param)
         .then((res) => {
           console.log(res)
           alert(res.data.message)
