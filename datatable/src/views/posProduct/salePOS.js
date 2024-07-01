@@ -103,7 +103,7 @@ const salePOS = () => {
     <>
       <div className="container d-flex flex-column justify-content-center align-align-items-center">
         <div className="d-flex flex-column justify-content-center align-items-center">
-          <h1>Rukhsar Point of Sale</h1>
+          <h1>Sample SA Portal</h1>
         </div>
         <CRow>
           <CContainer className="my-4 col-md-4 col-sm-6">
