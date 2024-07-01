@@ -6,6 +6,7 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AuthApiController;
+use App\Http\Controllers\VendorController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -28,6 +29,12 @@ Route::post('/customers', [CustomerController::class, 'store']);
 Route::get('/customers/{id}', [CustomerController::class, 'show']);
 Route::put('/customers/{id}', [CustomerController::class, 'update']);
 Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
+
+Route::get('/vendors', [VendorController::class, 'index']);
+Route::post('/vendors', [VendorController::class, 'store']);
+Route::get('/vendors/{id}', [VendorController::class, 'show']);
+Route::put('/vendors/{id}', [VendorController::class, 'update']);
+Route::delete('/vendors/{id}', [VendorController::class, 'destroy']);
 
 
 Route::post('register', [AuthApiController::class, 'register']);
