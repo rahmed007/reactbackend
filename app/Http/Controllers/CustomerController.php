@@ -15,12 +15,12 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $product = new Customer;
-        $product->customer_type = $request->customer_type;
-        $product->name = $request->name;
-        $product->contact = $request->contact;
-        $product->address = $request->address;
-        $product->save();
+        $customer = new Customer;
+        $customer->customer_type = $request->customer_type;
+        $customer->name = $request->name;
+        $customer->contact = $request->contact;
+        $customer->address = $request->address;
+        $customer->save();
 
         return response()->json([
             'message'=> 'customer added'
@@ -30,10 +30,10 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        $product = Customer::find($id);
-        if(!empty($product))
+        $customer = Customer::find($id);
+        if(!empty($customer))
     {
-            return response()->json($product);
+            return response()->json($customer);
         }
         else
         {
@@ -47,13 +47,13 @@ class CustomerController extends Controller
     {
         if(Customer::where('id', $id)->exists())
         {
-            $product = Customer::find($id);
-            $product->customer_type = is_null($request->customer_type) ? $product->customer_type:$request->customer_type;
-            $product->name = is_null($request->name) ? $product->name:$request->name;
-            $product->contact = is_null($request->contact) ? $product->contact:$request->contact;
-            $product->address = is_null($request->address) ? $product->address:$request->address;
+            $customer = Customer::find($id);
+            $customer->customer_type = is_null($request->customer_type) ? $customer->customer_type:$request->customer_type;
+            $customer->name = is_null($request->name) ? $customer->name:$request->name;
+            $customer->contact = is_null($request->contact) ? $customer->contact:$request->contact;
+            $customer->address = is_null($request->address) ? $customer->address:$request->address;
 
-            $product->save();
+            $customer->save();
 
             return response()->json([
                 "message"=> "Customer Updated"
@@ -69,8 +69,8 @@ class CustomerController extends Controller
 
     public function destroy($id)
     {
-        $product = Customer::findOrFail($id);
-        $product->delete();
+        $customer = Customer::findOrFail($id);
+        $customer->delete();
 
         return response()->json(['message' => 'Customer deleted successfully']);
     }
