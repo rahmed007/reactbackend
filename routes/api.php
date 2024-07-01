@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AuthApiController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\SaleController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -35,6 +36,8 @@ Route::post('/vendors', [VendorController::class, 'store']);
 Route::get('/vendors/{id}', [VendorController::class, 'show']);
 Route::put('/vendors/{id}', [VendorController::class, 'update']);
 Route::delete('/vendors/{id}', [VendorController::class, 'destroy']);
+
+Route::post('/sales', [SaleController::class, 'store']);
 
 
 Route::post('register', [AuthApiController::class, 'register']);
