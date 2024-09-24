@@ -102,9 +102,9 @@ const salePOS = () => {
   return (
     <>
       <div className="container d-flex flex-column justify-content-center align-align-items-center">
-        <div className="d-flex flex-column justify-content-center align-items-center">
+        {/* <div className="d-flex flex-column justify-content-center align-items-center">
           <h1>Sample SA Portal</h1>
-        </div>
+        </div> */}
         <CRow>
           <CContainer className="my-4 col-md-4 col-sm-6">
             <CustomerDialog

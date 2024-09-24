@@ -42,7 +42,7 @@ const customerDatatable = () => {
 
   const columns = [
     { field: 'id', headerName: 'ID' },
-    { field: 'customer_type', headerName: 'Type' },
+    // { field: 'customer_type', headerName: 'Type' },
     { field: 'name', headerName: 'Name' },
     { field: 'contact', headerName: 'Contact' },
     { field: 'address', headerName: 'Address' },
@@ -68,7 +68,7 @@ const customerDatatable = () => {
           <IconButton
             onClick={() => {
               console.log(params.row)
-              sendDelete(params.row)
+              sendCustomerDelete(params.row)
             }}
           >
             <DeleteIcon color="error"></DeleteIcon>
